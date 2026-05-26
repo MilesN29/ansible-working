@@ -4,18 +4,21 @@
     - name: downlaod transaction_list
       block:
         - file:
-          path: /home/ansible/lab-error-handling
-          state: directory
-          mode: '0755'
+            path: /home/ansible/lab-error-handling
+            state: directory
+            mode: '0755'
         - get_url:
-          url: https://bit.ly/3dtJtR7
-          dest: /home/ansible/lab-error-handling/transaction_list
+            url: https://bit.ly/3dtJtR7
+            dest: /home/ansible/lab-error-handling/transaction_list
         - replace:
-          path: /home/ansible/lab-error-handling/transaction_list
-          regexp: "#BLANKLINE"
-          replace: '\n'
-        - debug: msg="File downloaded
+            path: /home/ansible/lab-error-handling/transaction_list
+            regexp: "#BLANKLINE"
+            replace: '\n'
+        - debug:
+            msg: "File downloaded"
       rescue:
-        - debug: msg="Site appears to be down. try again later."
+        - debug:
+            msg: "Site appears to be down. try again later."
       always:
-        - debug: msg="attempt completed."
+        - debug:
+            msg: "attempt completed."
