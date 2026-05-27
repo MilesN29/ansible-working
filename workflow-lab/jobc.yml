@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - name: jobs
+    - ansible.builtin.debug:
+      msg: "Job C"
