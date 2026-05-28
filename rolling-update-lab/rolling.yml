@@ -9,9 +9,9 @@
     break_host: ""
 
   tasks:
-    - name: SHow current host being updated
+    - name: Show current host being updated
       ansible.builtin.debug:
-        msg: "Start rolling update on {{ inventory_hostname }}"
+        msg: "Starting rolling update on {{ inventory_hostname }}"
 
     - name: Create application directory
       ansible.builtin.file:
@@ -26,13 +26,13 @@
         mode: '0644'
       notify: restart fake application
 
-    - name: Simulate maitenance time
+    - name: Simulate maintenance time
       ansible.builtin.pause:
         seconds: 5
 
-    - name: Optional Simulated faiulure
+    - name: Optional simulated failure
       ansible.builtin.fail:
-        msg: "Simulated faiulure on {{ inventory_hostname }}"
+        msg: "Simulated failure on {{ inventory_hostname }}"
       when: inventory_hostname == break_host
 
     - name: Run health check
@@ -44,6 +44,6 @@
         msg: "Rolling update completed on {{ inventory_hostname }}"
 
   handlers:
-    - name: Restart fake application
+    - name: restart fake application
       ansible.builtin.debug:
-        msg: "Fake application restarted on {{ invertory_hostname }}"
+        msg: "Fake application restarted on {{ inventory_hostname }}"
