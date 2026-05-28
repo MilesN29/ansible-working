@@ -24,7 +24,7 @@
         content: "{{ release_version }}"
         dest: /tmp/platform-app/release-version.txt
         mode: '0644'
-      notify: restart fake application
+      notify: Restart fake application
 
     - name: Simulate maintenance time
       ansible.builtin.pause:
@@ -44,6 +44,6 @@
         msg: "Rolling update completed on {{ inventory_hostname }}"
 
   handlers:
-    - name: restart fake application
+    - name: Restart fake application
       ansible.builtin.debug:
         msg: "Fake application restarted on {{ inventory_hostname }}"
